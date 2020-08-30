@@ -3,6 +3,9 @@ window.addEventListener("DOMContentLoaded", () => {
         const words = Object.keys(result.words)
     document.getElementById('words-count').textContent = words.length;
     document.getElementById('words').textContent = words.join(', ')
-    console.log(result.words);
+
+    document.getElementById('review').addEventListener('click',()=>{
+        window.open(chrome.runtime.getURL('review.html'))
+    })
   });
 });
