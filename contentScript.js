@@ -55,19 +55,24 @@ formTemplate.innerHTML = `
 `;
 
 // ============================================================================
+let formContainer;
 document.addEventListener('click', async ()=>{
-  const word = window.getSelection().toString()
-  if (!word){ return }
-  const bubble = await waitForTranslationBubble()
-  console.log(bubble)
+  const selected = window.getSelection().toString()
+  if (!selected){ return }
 
-  const formContainer = document.createElement('div')
-  const shadow = formContainer.attachShadow({mode: 'open'})
+  if(formContainer && formContainer.parentNode.isConnected){
+    formContainer.shadowRoot.querySelector('input[name=definition]').value = selected
+  }else{
+  const bubble = await waitForTranslationBubble()
+
+  formContainer = document.createElement('div')
+  const shadow = formContainer.attachShadow({mode: 'open'})//需要 shadow 是因為不希望被網站原本的css js 影響
   const templateCloned = document.importNode(formTemplate.content,true)
 
   shadow.appendChild(templateCloned)
   bubble.appendChild(formContainer)
 
   const form = shadow.querySelector('form')
-  form.querySelector('input[name=word]').value = word
+  form.querySelector('input[name=word]').value = selected
+  }
 })
