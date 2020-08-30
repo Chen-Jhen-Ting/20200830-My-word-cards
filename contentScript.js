@@ -18,10 +18,15 @@ const waitForTranslationBubble = () => new Promise(resolve => {
 
 const addWord = (word, definition) => {
   chrome.storage.local.get(['words'], result => {
-    chrome.storage.local.set({ words: {
-      ...result.words,
-      [word]: definition,
-    }})
+    console.log('1223')
+    if(word in Object.keys(result.words)){
+      console.log('已經添加過了～～～！')
+    }else{
+      chrome.storage.local.set({ words: {
+        ...result.words,
+        [word]: definition,
+      }})
+    }
   });
 }
 
