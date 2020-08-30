@@ -55,3 +55,19 @@ formTemplate.innerHTML = `
 `;
 
 // ============================================================================
+document.addEventListener('click', async ()=>{
+  const word = window.getSelection().toString()
+  if (!word){ return }
+  const bubble = await waitForTranslationBubble()
+  console.log(bubble)
+
+  const formContainer = document.createElement('div')
+  const shadow = formContainer.attachShadow({mode: 'open'})
+  const templateCloned = document.importNode(formTemplate.content,true)
+
+  shadow.appendChild(templateCloned)
+  bubble.appendChild(formContainer)
+
+  const form = shadow.querySelector('form')
+  form.querySelector('input[name=word]').value = word
+})
