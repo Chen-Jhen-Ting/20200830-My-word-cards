@@ -74,5 +74,19 @@ document.addEventListener('click', async ()=>{
 
   const form = shadow.querySelector('form')
   form.querySelector('input[name=word]').value = selected
+
+  form.addEventListener('submit',event=>{
+    event.preventDefault()
+    const word =form.querySelector('input[name=word]').value
+    const definition =form.querySelector('input[name=definition]').value
+
+    addWord(word,definition)
+
+    const submitBtm = form.querySelector('[type=submit]')
+    submitBtm.disabled = true
+    submitBtm.value = '已新增'
+
+
+  })
   }
 })
