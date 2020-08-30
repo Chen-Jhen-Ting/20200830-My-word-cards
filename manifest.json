@@ -1,7 +1,7 @@
 {
     "name": "My word cards",
     "version": "1.0",
-    "description": "Build an Extension!",
+    "description": "Help you keep every words",
     "manifest_version": 2,
     "icons": {
         "16":"./icon.png",
