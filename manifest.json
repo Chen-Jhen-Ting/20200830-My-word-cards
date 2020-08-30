@@ -2,7 +2,7 @@
     "name": "My word cards",
     "version": "1.0",
     "description": "Help you keep every words",
-    "permissions": ["activeTab"],
+    "permissions": ["activeTab","storage"],
     "content_scripts": [{
         "matches": ["https://*/*", "https://*/*"],
         "js": ["contentScript.js"]
